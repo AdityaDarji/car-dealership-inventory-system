@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CarNotFoundException.class)
+    @ExceptionHandler(VehicleNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleCarNotFound(
-            CarNotFoundException ex) {
+            VehicleNotFoundException ex) {
 
         ErrorResponse response = new ErrorResponse(
                 LocalDateTime.now(),
@@ -22,6 +22,20 @@ public class GlobalExceptionHandler {
                 ex.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(OutOfStockException.class)
+    public ResponseEntity<ErrorResponse> handleOutOfStock(
+            OutOfStockException ex) {
+
+        ErrorResponse response = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                "Out Of Stock",
+                ex.getMessage());
+
+        return new ResponseEntity<>(response,
+                HttpStatus.BAD_REQUEST);
     }
 
 }

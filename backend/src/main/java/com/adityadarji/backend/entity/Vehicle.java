@@ -10,13 +10,21 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "cars")
+@Table(name = "vehicles")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Car {
+public class Vehicle {
+
+    public enum VehicleStatus {
+        AVAILABLE,
+        RESERVED,
+        SOLD,
+        OUT_OF_STOCK
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -50,12 +58,19 @@ public class Car {
     @Positive(message = "Price must be greater than zero")
     private BigDecimal price;
 
+    @Column(nullable = false)
+    private String category;
+
+    @Column(nullable = false)
+    private Integer quantity;
+
     @Column(unique = true)
     @NotBlank(message = "VIN number is required")
     private String vin;
 
-    @NotBlank(message = "Status of availability is required")
-    private String status;
+    @NotNull(message = "Status is required")
+    @Enumerated(EnumType.STRING)
+    private VehicleStatus status;
 
     private LocalDateTime createdAt;
 
