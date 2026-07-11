@@ -2,6 +2,9 @@ package com.adityadarji.backend.controller;
 
 import com.adityadarji.backend.entity.Car;
 import com.adityadarji.backend.service.CarService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +20,7 @@ public class CarController {
     }
 
     @PostMapping
-    public Car createCar(@RequestBody Car car) {
+    public Car createCar(@Valid @RequestBody Car car) {
         return carService.createCar(car);
     }
 
@@ -33,7 +36,7 @@ public class CarController {
 
     @PutMapping("/{id}")
     public Car updateCar(@PathVariable Long id,
-            @RequestBody Car car) {
+            @Valid @RequestBody Car car) {
 
         return carService.updateCar(id, car);
     }
