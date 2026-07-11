@@ -87,4 +87,20 @@ public class VehicleServiceImpl implements VehicleService {
 
         return VehicleMapper.toDTO(updatedVehicle);
     }
+
+    @Override
+    public VehicleDTO restockVehicle(Long id,
+            Integer quantity) {
+
+        Vehicle vehicle = vehicleRepository.findById(id)
+                .orElseThrow(() -> new VehicleNotFoundException(
+                        "Vehicle not found"));
+
+        vehicle.setQuantity(
+                vehicle.getQuantity() + quantity);
+
+        Vehicle updated = vehicleRepository.save(vehicle);
+
+        return VehicleMapper.toDTO(updated);
+    }
 }

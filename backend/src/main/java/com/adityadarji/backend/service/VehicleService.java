@@ -19,4 +19,7 @@ public interface VehicleService {
 
     VehicleDTO purchaseVehicle(Long id);
 
+    VehicleDTO restockVehicle(Long id,
+            Integer quantity);
+
 }

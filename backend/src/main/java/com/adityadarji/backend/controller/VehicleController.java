@@ -1,5 +1,6 @@
 package com.adityadarji.backend.controller;
 
+import com.adityadarji.backend.dto.RestockRequest;
 import com.adityadarji.backend.dto.VehicleDTO;
 import com.adityadarji.backend.entity.Vehicle;
 import com.adityadarji.backend.service.VehicleService;
@@ -55,5 +56,17 @@ public class VehicleController {
             @PathVariable Long id) {
 
         return vehicleService.purchaseVehicle(id);
+    }
+
+    @PostMapping("/{id}/restock")
+    public VehicleDTO restockVehicle(
+
+            @PathVariable Long id,
+
+            @Valid @RequestBody RestockRequest request) {
+
+        return vehicleService.restockVehicle(
+                id,
+                request.getQuantity());
     }
 }
