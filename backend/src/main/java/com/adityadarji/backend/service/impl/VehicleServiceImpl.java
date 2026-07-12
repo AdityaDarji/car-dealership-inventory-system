@@ -143,7 +143,6 @@ public class VehicleServiceImpl implements VehicleService {
                     .map(VehicleMapper::toDTO)
                     .toList();
         }
-
         return getAllVehicle();
     }
 }

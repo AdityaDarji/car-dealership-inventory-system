@@ -2,6 +2,7 @@ package com.adityadarji.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,9 +40,16 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**")
                         .permitAll()
 
+                        .requestMatchers(HttpMethod.DELETE,
+                                "/api/vehicles/**")
+                        .hasAuthority("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST,
+                                "/api/vehicles/*/restock")
+                        .hasAuthority("ADMIN")
+
                         .anyRequest()
                         .authenticated())
-
                 .addFilterBefore(
                         jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class);
