@@ -1,5 +1,6 @@
 package com.adityadarji.backend.controller;
 
+import com.adityadarji.backend.dto.AuthResponse;
 import com.adityadarji.backend.dto.LoginRequest;
 import com.adityadarji.backend.dto.RegisterRequest;
 import com.adityadarji.backend.service.AuthService;
@@ -24,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(
+    public AuthResponse login(
             @Valid @RequestBody LoginRequest request) {
 
         return authService.login(request);

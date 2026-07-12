@@ -69,4 +69,21 @@ public class VehicleController {
                 id,
                 request.getQuantity());
     }
+
+    @GetMapping("/search")
+    public List<VehicleDTO> searchVehicles(
+
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String model,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice) {
+
+        return vehicleService.searchVehicles(
+                brand,
+                model,
+                category,
+                minPrice,
+                maxPrice);
+    }
 }

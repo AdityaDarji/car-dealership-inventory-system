@@ -22,4 +22,10 @@ public interface VehicleService {
     VehicleDTO restockVehicle(Long id,
             Integer quantity);
 
+    List<VehicleDTO> searchVehicles(
+            String brand,
+            String model,
+            String category,
+            Double minPrice,
+            Double maxPrice);
 }

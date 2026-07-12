@@ -1,10 +1,13 @@
 package com.adityadarji.backend.service.impl;
 
+import com.adityadarji.backend.dto.AuthResponse;
 import com.adityadarji.backend.dto.LoginRequest;
 import com.adityadarji.backend.dto.RegisterRequest;
 import com.adityadarji.backend.entity.User;
 import com.adityadarji.backend.repository.UserRepository;
 import com.adityadarji.backend.service.AuthService;
+import com.adityadarji.backend.util.JwtService;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +17,14 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final JwtService jwtService;
+
     public AuthServiceImpl(UserRepository userRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder, JwtService jwtService) {
 
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(LoginRequest request) {
+    public AuthResponse login(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -53,6 +59,8 @@ public class AuthServiceImpl implements AuthService {
             throw new RuntimeException("Invalid Credentials");
         }
 
-        return "Login Successful";
+        String token = jwtService.generateToken(user.getEmail());
+
+        return new AuthResponse(token);
     }
 }

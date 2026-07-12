@@ -103,4 +103,47 @@ public class VehicleServiceImpl implements VehicleService {
 
         return VehicleMapper.toDTO(updated);
     }
+
+    @Override
+    public List<VehicleDTO> searchVehicles(
+            String brand,
+            String model,
+            String category,
+            Double minPrice,
+            Double maxPrice) {
+
+        if (brand != null) {
+            return vehicleRepository
+                    .findByBrandContainingIgnoreCase(brand)
+                    .stream()
+                    .map(VehicleMapper::toDTO)
+                    .toList();
+        }
+
+        if (model != null) {
+            return vehicleRepository
+                    .findByModelContainingIgnoreCase(model)
+                    .stream()
+                    .map(VehicleMapper::toDTO)
+                    .toList();
+        }
+
+        if (category != null) {
+            return vehicleRepository
+                    .findByCategoryContainingIgnoreCase(category)
+                    .stream()
+                    .map(VehicleMapper::toDTO)
+                    .toList();
+        }
+
+        if (minPrice != null && maxPrice != null) {
+            return vehicleRepository
+                    .findByPriceBetween(minPrice, maxPrice)
+                    .stream()
+                    .map(VehicleMapper::toDTO)
+                    .toList();
+        }
+
+        return getAllVehicle();
+    }
 }
