@@ -52,6 +52,9 @@ public class VehicleServiceImpl implements VehicleService {
         existingCar.setTransmission(updatedVehicle.getTransmission());
         existingCar.setMileage(updatedVehicle.getMileage());
         existingCar.setPrice(updatedVehicle.getPrice());
+        existingCar.setImageUrl(updatedVehicle.getImageUrl());
+        existingCar.setCategory(updatedVehicle.getCategory());
+        existingCar.setQuantity(updatedVehicle.getQuantity());
         existingCar.setVin(updatedVehicle.getVin());
         existingCar.setStatus(updatedVehicle.getStatus());
 

@@ -47,6 +47,10 @@ public class Vehicle {
     @NotBlank(message = "Fuel type is required")
     private String fuelType;
 
+    @Column(length = 1000, name = "image_url")
+    @NotBlank(message = "Image is required")
+    private String imageUrl;
+
     @NotBlank(message = "Transmission is required")
     private String transmission;
 

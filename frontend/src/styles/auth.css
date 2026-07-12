@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+
+  background: linear-gradient(135deg, #20252b, #313840, #20252b);
+}
+
+.auth-container {
+  width: 100%;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 40px;
+}
+
+.auth-wrapper {
+  width: 100%;
+
+  max-width: 1050px;
+
+  height: 620px;
+
+  background: #5d6670;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  display: flex;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+/* LEFT */
+
+.auth-image {
+  flex: 1.1;
+
+  min-height: 650px;
+
+  position: relative;
+}
+
+.auth-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.45));
+}
+
+/* RIGHT */
+
+.auth-right {
+  flex: 0.9;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 50px;
+}
+.glass-card {
+  width: 100%;
+
+  max-width: 380px;
+}
+
+.glass-card h1 {
+  color: white;
+
+  font-size: 2rem;
+
+  margin-bottom: 10px;
+
+  font-weight: 700;
+}
+
+.glass-card p {
+  color: #d9d9d9;
+
+  margin-bottom: 30px;
+
+  font-size: 0.9rem;
+}
+
+.auth-input {
+  width: 100%;
+
+  padding: 14px;
+
+  margin-bottom: 18px;
+
+  background: transparent;
+
+  color: white;
+
+  border: none;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+  outline: none;
+
+  font-size: 15px;
+}
+
+.auth-input::placeholder {
+  color: #d2d2d2;
+}
+
+.auth-btn {
+  width: 100%;
+
+  padding: 14px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 30px;
+
+  background: white;
+
+  color: #333;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background: #dedede;
+}
+
+.bottom-link {
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: white;
+
+  font-size: 0.9rem;
+}
+
+.bottom-link a {
+  color: white;
+
+  margin-left: 8px;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-image {
+    height: 35vh;
+  }
+
+  .glass-card {
+    margin-top: -60px;
+  }
+}
+
+@media (max-width: 500px) {
+  .glass-card {
+    padding: 30px 20px;
+  }
+
+  .glass-card h1 {
+    font-size: 1.6rem;
+  }
+}

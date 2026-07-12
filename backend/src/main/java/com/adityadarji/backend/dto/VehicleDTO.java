@@ -34,6 +34,7 @@ public class VehicleDTO {
     private String category;
 
     private Integer quantity;
+    private String imageUrl;
 
     private VehicleStatus status;
 
